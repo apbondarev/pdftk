@@ -1,0 +1,25 @@
+{
+  "name": "pdftk",
+  "displayName": "pdftk",
+  "description": "",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.102.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [{
+      "id": "pdftk",
+      "aliases": ["pdftk", "pdftk"],
+      "extensions": ["pdftk"],
+      "configuration": "./language-configuration.json"
+    }],
+    "grammars": [{
+      "language": "pdftk",
+      "scopeName": "source.pdftk",
+      "path": "./syntaxes/pdftk.tmLanguage.json"
+    }]
+  }
+}

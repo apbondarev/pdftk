@@ -1,0 +1,47 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "pdftk",
+	"patterns": [
+		{ "include": "#bookmark_section" }
+	],
+	"repository": {
+		"integer": {
+			"name": "constant.numeric.pdftk",
+			"match": "[0-9][0-9]*"
+		},
+		"bookmark_section": {
+			"name": "meta.structure.bookmark.pdftk",
+			"begin": "^(BookmarkBegin)$",
+			"beginCaptures": {
+				"1": {"name": "keyword.control.pdftk"}
+			},
+			"end": "^(BookmarkPageNumber)(:)\\s*([0-9][0-9]*)$",
+			"endCaptures": {
+				"1": {"name": "entity.other.attribute-name.pdftk"},
+				"2": {"name": "punctuation.separator.key-value.pdftk"},
+				"3": {"patterns": [{"include": "#integer"}]}
+			},
+			"patterns": [
+				{
+					"name": "entity.other.attribute-name.pdftk",
+					"match": "^(BookmarkTitle)(:)\\s*(.*)$",
+					"captures": {
+						"1": {"name": "entity.other.attribute-name.pdftk"},
+						"2": {"name": "punctuation.separator.key-value.pdftk"},
+						"3": {"name": "string.unquoted.pdftk"}
+					}
+				},
+				{
+					"name": "entity.bookmark.level.pdftk",
+					"match": "^(BookmarkLevel)(:)\\s*(.*)$",
+					"captures": {
+						"1": {"name": "entity.other.attribute-name.pdftk"},
+						"2": {"name": "punctuation.separator.key-value.pdftk"},
+						"3": {"patterns": [{"include": "#integer"}]}
+					}
+				}
+			]
+		}
+	},
+	"scopeName": "source.pdftk"
+}
